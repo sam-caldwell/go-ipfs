@@ -218,7 +218,8 @@ func (f *FileManager) readURLDataObj(c *cid.Cid, d *pb.DataObj) ([]byte, error) 
 		return nil, err
 	}
 	if res.StatusCode != http.StatusPartialContent {
-		return nil, fmt.Errorf("expected HTTP 206 got %d", res.StatusCode)
+		return nil, &CorruptReferenceError{StatusFileError,
+			fmt.Errorf("expected HTTP 206 got %d", res.StatusCode)}
 	}
 
 	outbuf := make([]byte, d.GetSize_())
