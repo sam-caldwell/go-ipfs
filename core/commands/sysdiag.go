@@ -117,8 +117,8 @@ func memInfo(out map[string]interface{}) error {
 		return err
 	}
 
-	m["swap"] = meminf.Swap
-	m["virt"] = meminf.Used
+	m["VmSwap"] = meminf.Swap
+	m["VmSize"] = meminf.Used
 	out["memory"] = m
 	return nil
 }
